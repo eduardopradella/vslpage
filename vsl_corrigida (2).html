@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Protocolo Xô Bigode Chinês</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#0f0f0f">
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --tx: #f1f1f1;
+      --mu: #aaa;
+      --hl: #ffd60a;
+      --cta: #16a34a;
+      --cta2: #15803d;
+      --border: #3f3f3f;
+      --hover: #272727;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--tx);
+      font: 400 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+    }
+    button, input { font: inherit; }
+    .yt-header {
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      width: 100%; height: 64px; padding: 0 24px; background: #0f0f0f;
+      border-bottom: 1px solid #272727; position: sticky; top: 0; z-index: 100;
+    }
+    .yt-logo { display: flex; align-items: center; gap: 6px; flex-shrink: 0; color: #fff; font-size: 20px; font-weight: 700; letter-spacing: -1px; }
+    .yt-logo svg { display: block; width: 30px; height: 22px; fill: #ff0000; }
+    .yt-search {
+      flex: 1; width: 100%; max-width: 500px; height: 40px; margin-left: auto;
+      background: #121212; border: 1px solid #303030; border-radius: 24px;
+      padding: 0 18px; display: flex; align-items: center; color: #888; font-size: 14px;
+    }
+    .yt-user { width: 36px; height: 36px; border-radius: 50%; background: #555; flex-shrink: 0; }
+    .main-container {
+      width: 100%; max-width: 1280px; margin: 0 auto; padding: 24px;
+      display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px;
+    }
+    .content-left { min-width: 0; }
+    .vw {
+      position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000;
+      border-radius: 12px; overflow: hidden; margin-bottom: 12px;
+    }
+    .vw video { width: 100%; height: 100%; display: block; object-fit: contain; background: #000; }
+    #snd {
+      position: absolute; inset: 0; width: 100%; border: 0; cursor: pointer;
+      background: rgba(0,0,0,.52); color: #fff; font: inherit; font-weight: 700;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+    }
+    #snd span { background: #ff0000; color: #fff; padding: 11px 18px; border-radius: 999px; }
+    #snd.off { display: none; }
+    .video-title { font-size: clamp(18px, 2.2vw, 22px); font-weight: 700; line-height: 1.4; margin: 12px 0; color: #f1f1f1; }
+    .highlight { color: var(--hl); }
+    .channel-row {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+    }
+    .channel-info { display: flex; align-items: center; gap: 12px; }
+    .channel-avatar, .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: #333; overflow: hidden; flex-shrink: 0; }
+    .channel-avatar img, .user-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .channel-name { font-weight: 600; font-size: 16px; color: #f1f1f1; }
+    .channel-subs { font-size: 12px; color: var(--mu); }
+    .channel-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .subscribe-btn { background: #f1f1f1; color: #0f0f0f; font-weight: 600; border: 0; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 14px; }
+    .video-actions { display: flex; gap: 8px; align-items: center; }
+    .action-btn { background: #272727; color: #f1f1f1; border: 0; padding: 8px 14px; border-radius: 18px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .cta { display: block; visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .5s; margin: 20px 0; max-width: 100%; text-decoration: none; }
+    .cta.on { visibility: visible; opacity: 1; pointer-events: auto; }
+    .btn {
+      display: block; background: var(--cta); color: #fff; text-decoration: none; font-weight: 800;
+      font-size: clamp(16px, 4vw, 20px); padding: 16px 20px; border-radius: 12px; text-align: center;
+      box-shadow: 0 0 0 0 rgba(22,163,74,.6); animation: pulse 2s infinite;
+    }
+    .btn:hover, .btn:focus-visible { background: var(--cta2); outline: 2px solid #fff; outline-offset: 3px; }
+    .btn small { display: block; font-weight: 500; font-size: .65em; opacity: .9; margin-top: 2px; }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 14px rgba(22,163,74,0); } 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); } }
+    .comments-section { margin-top: 24px; }
+    .comments-header { font-size: 18px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 24px; }
+    .add-comment { display: flex; gap: 16px; margin-bottom: 24px; }
+    .comment-input { flex-grow: 1; min-width: 0; background: transparent; border: 0; border-bottom: 1px solid var(--border); color: #fff; padding-bottom: 4px; font-size: 14px; outline: none; }
+    .comment-input::placeholder { color: var(--mu); }
+    .comment-item { display: flex; gap: 16px; margin-bottom: 20px; }
+    .comment-author { font-weight: 600; font-size: 13px; color: #f1f1f1; margin-bottom: 4px; }
+    .comment-author span { font-weight: 400; color: var(--mu); font-size: 12px; margin-left: 4px; }
+    .comment-text { font-size: 14px; line-height: 1.5; color: #f1f1f1; margin-bottom: 6px; }
+    .comment-toolbar { display: flex; align-items: center; gap: 12px; font-size: 12px; color: var(--mu); }
+    .comment-toolbar button { background: none; border: 0; color: var(--mu); font-size: 12px; }
+    .content-right { display: flex; flex-direction: column; gap: 12px; }
+    .sidebar-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .side-video-card { display: flex; gap: 8px; }
+    .side-thumb { width: 150px; height: 84px; background: #222; border-radius: 8px; flex-shrink: 0; overflow: hidden; }
+    .side-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .side-info h4 { font-size: 13px; font-weight: 600; line-height: 1.3; color: #f1f1f1; margin-bottom: 4px; }
+    .side-info p { font-size: 12px; color: var(--mu); }
+    .ft { margin-top: 36px; padding-bottom: 24px; color: #6f6f6f; font-size: 12px; line-height: 1.5; text-align: center; }
+    .ft a { color: #8a8a8a; }
+    @media (max-width: 1024px) { .main-container { grid-template-columns: minmax(0, 1fr); } .content-right { display: none; } }
+    @media (max-width: 600px) {
+      .yt-header { height: 56px; padding: 0 12px; gap: 12px; }
+      .yt-logo { font-size: 17px; }
+      .yt-logo svg { width: 25px; }
+      .yt-search { max-width: none; height: 36px; padding: 0 12px; font-size: 12px; }
+      .yt-user { width: 30px; height: 30px; }
+      .main-container { padding: 12px 0; gap: 12px; }
+      .content-left { width: 100%; }
+      .vw { border-radius: 0; margin-bottom: 12px; }
+      .video-title, .channel-row, .cta, .comments-section, .ft { margin-left: 12px; margin-right: 12px; }
+      .video-title { font-size: 18px; }
+      .channel-actions { width: 100%; justify-content: space-between; }
+      .action-btn { padding: 8px 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .btn { animation: none; } .cta { transition: none; } }
+  </style>
+
+  <script>
+    /* CONFIGURAÇÃO: confirma estes IDs e substitui o vídeo pelo URL real. */
+    const CFG = {
+      variant: "vsl",
+      gtm: "GTM-KW5KPHQ2",
+      ga4: "G-YE45BSL91J",
+      metaPixel: "985013594550295",
+      checkout: "https://pay.hotmart.com/U107766375N?off=s8ovmae1&checkoutMode=10",
+      videoSrc: "URL-DO-VIDEO.mp4",
+      ctaDelay: 600
+    };
+
+    window.dataLayer = window.dataLayer || [];
+    function uid() {
+      return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    }
+    function validId(value) {
+      return Boolean(value && !/^(X{4}|0+)$/i.test(value));
+    }
+    function trackEvent(name, params = {}) {
+      window.dataLayer.push({ event: name, page_variant: CFG.variant, ...params });
+      if (typeof window.fbq === "function") {
+        window.fbq("trackCustom", name, params, { eventID: uid() });
+      }
+    }
+
+    (function setupTracking() {
+      if (validId(CFG.gtm)) {
+        (function(w, d, s, l, i) {
+          w[l].push({ "gtm.start": Date.now(), event: "gtm.js" });
+          const first = d.getElementsByTagName(s)[0];
+          const script = d.createElement(s);
+          script.async = true;
+          script.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(i);
+          first.parentNode.insertBefore(script, first);
+        })(window, document, "script", "dataLayer", CFG.gtm);
+      }
+
+      if (validId(CFG.ga4)) {
+        const ga = document.createElement("script");
+        ga.async = true;
+        ga.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(CFG.ga4);
+        document.head.appendChild(ga);
+        window.gtag = function() { window.dataLayer.push(arguments); };
+        window.gtag("js", new Date());
+        window.gtag("config", CFG.ga4, { page_variant: CFG.variant });
+      }
+
+      if (validId(CFG.metaPixel)) {
+        !function(f,b,e,v,n,t,s) {
+          if (f.fbq) return;
+          n = f.fbq = function() { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+          if (!f._fbq) f._fbq = n;
+          n.push = n; n.loaded = true; n.version = "2.0"; n.queue = [];
+          t = b.createElement(e); t.async = true; t.src = v;
+          s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+        }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+        window.PVID = uid();
+        window.fbq("init", CFG.metaPixel);
+        window.fbq("track", "PageView", {}, { eventID: window.PVID });
+      }
+
+      /* Script oficial de UTMs; removido o trecho obfuscado que estava no código original. */
+      const utmScript = document.createElement("script");
+      utmScript.async = true;
+      utmScript.defer = true;
+      utmScript.src = "https://cdn.utmify.com.br/scripts/utms/latest.js";
+      utmScript.setAttribute("data-utmify-prevent-xcod-sck", "");
+      utmScript.setAttribute("data-utmify-prevent-subids", "");
+      document.head.appendChild(utmScript);
+    })();
+
+    (function captureTrackingParams() {
+      const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbclid", "gclid", "src", "sck", "xcod"];
+      const query = new URLSearchParams(window.location.search);
+      let saved = {};
+      try { saved = JSON.parse(sessionStorage.getItem("vsl_tracking") || "{}"); } catch (e) {}
+      keys.forEach(key => { if (query.get(key)) saved[key] = query.get(key); });
+      try { sessionStorage.setItem("vsl_tracking", JSON.stringify(saved)); } catch (e) {}
+      window.TRK = saved;
+    })();
+  </script>
+</head>
+<body>
+  <header class="yt-header">
+    <div class="yt-logo" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+      </svg>
+      <span>YouTube</span>
+    </div>
+    <div class="yt-search" aria-label="Pesquisa">Pesquisar</div>
+    <div class="yt-user" aria-label="Perfil"></div>
+  </header>
+
+  <div class="main-container">
+    <main class="content-left">
+      <div class="vw">
+        <video id="v" muted playsinline preload="metadata" controls disablepictureinpicture controlslist="nodownload noplaybackrate">
+          O teu navegador não suporta a reprodução de vídeo.
+        </video>
+        <button id="snd" type="button" aria-label="Ativar o som do vídeo">
+          <span>🔊 Toque para ativar o som</span>
+        </button>
+      </div>
+
+      <h1 class="video-title">
+        Descubra como <span class="highlight">ELIMINAR O BIGODE CHINÊS</span> em
+        <span class="highlight">14 DIAS</span>, sem botox nem procedimentos caros.
+        <span class="highlight">Conheça o Protocolo Xô Bigode Chinês.</span>
+      </h1>
+
+      <div class="channel-row">
+        <div class="channel-info">
+          <div class="channel-avatar" aria-hidden="true"></div>
+          <div>
+            <div class="channel-name">Fórmula da Liberdade</div>
+            <div class="channel-subs">Canal de apresentação</div>
+          </div>
+        </div>
+        <div class="channel-actions">
+          <button class="subscribe-btn" type="button">Inscrever-se</button>
+          <div class="video-actions">
+            <button class="action-btn" type="button">👍 Gostei</button>
+            <button class="action-btn" type="button" id="shareBtn">↗ Compartilhar</button>
+          </div>
+        </div>
+      </div>
+
+      <a id="cta" class="cta" href="#" rel="nofollow">
+        <span class="btn">ACESSAR AGORA POR APENAS €18,33<small>Garantia de 7 dias</small></span>
+      </a>
+
+      <section class="comments-section">
+        <div class="comments-header"><span>Comentários</span></div>
+        <div class="add-comment">
+          <div class="user-avatar" aria-hidden="true"></div>
+          <input type="text" class="comment-input" placeholder="Adicione um comentário..." readonly aria-label="Adicionar comentário">
+        </div>
+
+        <!-- Substitui estes exemplos por comentários reais e autorizados antes de publicar. -->
+        <div class="comment-item">
+          <div class="user-avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
+          </div>
+          <div>
+            <div class="comment-author">Exemplo de comentário <span>Substituir por data real</span></div>
+            <div class="comment-text">Insere aqui um depoimento verdadeiro, publicado com autorização da pessoa.</div>
+            <div class="comment-toolbar"><button type="button">👍 Gostei</button><button type="button">Responder</button></div>
+          </div>
+        </div>
+
+        <div class="comment-item">
+          <div class="user-avatar">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
+          </div>
+          <div>
+            <div class="comment-author">Exemplo de comentário <span>Substituir por data real</span></div>
+            <div class="comment-text">Insere aqui outro depoimento verdadeiro, publicado com autorização da pessoa.</div>
+            <div class="comment-toolbar"><button type="button">👍 Gostei</button><button type="button">Responder</button></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="ft">
+        PROTOCOLO XÔ BIGODE CHINÊS ·
+        <a href="#" rel="nofollow">Termos</a> ·
+        <a href="#" rel="nofollow">Privacidade</a>
+        <p>Os resultados podem variar de pessoa para pessoa. O conteúdo não substitui aconselhamento médico.</p>
+      </footer>
+    </main>
+
+    <aside class="content-right" aria-label="Conteúdo relacionado">
+      <div class="sidebar-title">A seguir</div>
+      <div class="side-video-card">
+        <div class="side-thumb"></div>
+        <div class="side-info">
+          <h4>Protocolo Xô Bigode Chinês</h4>
+          <p>Fórmula da Liberdade</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    (function() {
+      const video = document.getElementById("v");
+      const soundButton = document.getElementById("snd");
+      const cta = document.getElementById("cta");
+      const shareButton = document.getElementById("shareBtn");
+      let ctaShown = false;
+      let playTracked = false;
+
+      function buildCheckoutUrl() {
+        try {
+          const checkoutUrl = new URL(CFG.checkout);
+          const params = new URLSearchParams(window.location.search);
+          params.forEach((value, key) => checkoutUrl.searchParams.set(key, value));
+          Object.keys(window.TRK || {}).forEach(key => {
+            if (!checkoutUrl.searchParams.has(key)) checkoutUrl.searchParams.set(key, window.TRK[key]);
+          });
+          const fbp = document.cookie.match(/(?:^|;\s*)_fbp=([^;]+)/);
+          const fbc = document.cookie.match(/(?:^|;\s*)_fbc=([^;]+)/);
+          if (fbp) checkoutUrl.searchParams.set("fbp", fbp[1]);
+          if (fbc) checkoutUrl.searchParams.set("fbc", fbc[1]);
+          return checkoutUrl.toString();
+        } catch (error) {
+          return CFG.checkout;
+        }
+      }
+
+      function showCTA() {
+        if (ctaShown) return;
+        ctaShown = true;
+        cta.classList.add("on");
+        trackEvent("CtaVisivel");
+        if (typeof window.fbq === "function") {
+          window.fbq("track", "ViewContent", { content_name: CFG.variant });
+        }
+      }
+
+      cta.href = buildCheckoutUrl();
+      cta.addEventListener("click", function(event) {
+        event.preventDefault();
+        const destination = buildCheckoutUrl();
+        trackEvent("cta_click");
+        if (typeof window.fbq === "function") {
+          window.fbq("track", "InitiateCheckout", { content_name: CFG.variant }, { eventID: uid() });
+        }
+        window.location.href = destination;
+      });
+
+      function loadVideo() {
+        if (!CFG.videoSrc || CFG.videoSrc === "URL-DO-VIDEO.mp4") {
+          console.warn("Configura CFG.videoSrc com o URL real do vídeo.");
+          soundButton.querySelector("span").textContent = "Configure o URL do vídeo no código";
+          soundButton.disabled = true;
+          soundButton.style.cursor = "not-allowed";
+          return;
+        }
+        video.src = CFG.videoSrc;
+        video.load();
+        video.play().catch(function() {
+          /* Alguns navegadores bloqueiam autoplay; o botão permite iniciar manualmente. */
+        });
+      }
+
+      soundButton.addEventListener("click", function() {
+        video.muted = false;
+        video.play().then(function() {
+          soundButton.classList.add("off");
+          trackEvent("VideoSomAtivado");
+        }).catch(function() {
+          soundButton.querySelector("span").textContent = "Toque novamente para reproduzir";
+        });
+      });
+
+      video.addEventListener("play", function() {
+        if (!playTracked) {
+          playTracked = true;
+          trackEvent("VideoPlay");
+        }
+      });
+
+      video.addEventListener("timeupdate", function() {
+        if (video.currentTime >= Number(CFG.ctaDelay)) showCTA();
+      });
+
+      video.addEventListener("ended", showCTA);
+      video.addEventListener("error", function() {
+        console.error("Não foi possível carregar o vídeo. Confirma o URL e o formato do ficheiro.");
+      });
+
+      shareButton.addEventListener("click", async function() {
+        try {
+          if (navigator.share) {
+            await navigator.share({ title: document.title, url: window.location.href });
+          } else if (navigator.clipboard) {
+            await navigator.clipboard.writeText(window.location.href);
+            shareButton.textContent = "✓ Link copiado";
+          } else {
+            window.prompt("Copia o link da página:", window.location.href);
+          }
+        } catch (error) {
+          /* O utilizador pode cancelar a partilha. */
+        }
+      });
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", loadVideo, { once: true });
+      } else {
+        loadVideo();
+      }
+    })();
+  </script>
+</body>
+</html>
