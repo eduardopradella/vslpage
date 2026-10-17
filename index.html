@@ -11,7 +11,7 @@
             --bg: #0f0f0f;
             --tx: #f1f1f1;
             --mu: #aaa;
-            --hl: #ffd60a;
+            --hl: #ff0000;
             --cta: #16a34a;
             --cta2: #15803d;
             --border: #3f3f3f;
@@ -80,21 +80,34 @@
             padding: 24px;
         }
         .content-left { width: 100%; }
+        
+        /* Estilos da Headline acima do vídeo */
+        .headline-wrapper {
+            margin-bottom: 16px;
+            text-align: left;
+        }
         .video-title {
-            font-size: clamp(18px, 2.2vw, 22px);
-            font-weight: 700;
-            line-height: 1.4;
-            margin: 12px 0;
+            font-size: clamp(20px, 2.5vw, 26px);
+            font-weight: 800;
+            line-height: 1.35;
+            margin-bottom: 8px;
             color: #f1f1f1;
         }
+        .video-subtitle {
+            font-size: clamp(14px, 1.8vw, 16px);
+            font-weight: 400;
+            color: var(--mu);
+            line-height: 1.4;
+        }
         .highlight { color: var(--hl); }
+
         .channel-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 12px;
-            margin-bottom: 16px;
+            margin: 16px 0;
             padding-bottom: 16px;
             border-bottom: 1px solid var(--border);
         }
@@ -241,8 +254,17 @@
         }
     </style>
     <script>
+        (function() {
+            let variant = localStorage.getItem("ab_test_variant");
+            if (!variant) {
+                variant = Math.random() < 0.5 ? "A" : "B";
+                localStorage.setItem("ab_test_variant", variant);
+            }
+            window.AB_VARIANT = variant;
+        })();
+
         const CFG = {
-            variant: "vsl",
+            variant: "vsl_" + (window.AB_VARIANT || "A"),
             gtm: "GTM-KW5KPHQ2",
             ga4: "G-YE45BSL91J",
             metaPixel: "985013594550295",
@@ -333,12 +355,20 @@
 
     <div class="main-container">
         <main class="content-left">
+            
+            <!-- Headline e Subheadline movidas para cima do vídeo -->
+            <div class="headline-wrapper">
+                <h1 class="video-title">
+                    Descubra a sequência de <span class="highlight">REJUVENESCIMENTO FACIAL</span> que ajuda a recuperar uma aparência <span class="highlight">até 10 anos mais jovem!</span>
+                </h1>
+                <p class="video-subtitle">
+                    Mais de 50 mil mulheres já usaram esta técnica natural para se livrar do bigode chinês sem botox e sem sair de casa.
+                </p>
+            </div>
+
+            <!-- Player do Vturb -->
             <vturb-smartplayer id="vid-6ad3cf7b71ed47eeac0a9c96" style="display: block; margin: 0 auto; width: 100%; max-width: 100%;"></vturb-smartplayer>
             <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/3a348d04-dc1a-4e87-9d0f-ddc1f0ffd8b7/players/6ad3cf7b71ed47eeac0a9c96/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
-
-            <h1 class="video-title">
-                Descubra como <span class="highlight">ELIMINAR O BIGODE CHINÊS</span> em <span class="highlight">14 DIAS</span>, sem botox nem procedimentos caros. Apenas 2 minutos. <span class="highlight">Conheça o Protocolo Xô Bigode Chinês.</span>
-            </h1>
 
             <div class="channel-row">
                 <div class="channel-info">
@@ -364,7 +394,7 @@
             <section class="comments-section">
                 <div class="comments-header"><span>7 Comentários</span></div>
 
-                <!-- Comentário 1 (Mulher 70+ sobre a oferta) -->
+                <!-- Comentários -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
@@ -376,7 +406,6 @@
                     </div>
                 </div>
 
-                <!-- Comentário 2 (Mulher 70+ sobre o valor/preço) -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
@@ -388,7 +417,6 @@
                     </div>
                 </div>
 
-                <!-- Comentário 3 -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
@@ -400,7 +428,6 @@
                     </div>
                 </div>
 
-                <!-- Comentário 4 -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
@@ -412,7 +439,6 @@
                     </div>
                 </div>
 
-                <!-- Comentário 5 -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
@@ -424,7 +450,6 @@
                     </div>
                 </div>
 
-                <!-- Comentário 6 -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
@@ -436,7 +461,6 @@
                     </div>
                 </div>
 
-                <!-- Comentário 7 -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
@@ -502,7 +526,6 @@
                 window.location.href = destination;
             });
 
-            // Simulação de exibição do CTA com base no atraso configurado (ex: 600 segundos ou quando o player acionar)
             setTimeout(showCTA, Number(CFG.ctaDelay) * 1000);
 
             shareButton.addEventListener("click", async function() {
