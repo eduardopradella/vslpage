@@ -192,19 +192,6 @@
             align-items: center;
             gap: 24px;
         }
-        .add-comment { display: flex; gap: 16px; margin-bottom: 24px; }
-        .comment-input {
-            flex-grow: 1;
-            min-width: 0;
-            background: transparent;
-            border: 0;
-            border-bottom: 1px solid var(--border);
-            color: #fff;
-            padding-bottom: 4px;
-            font-size: 14px;
-            outline: none;
-        }
-        .comment-input::placeholder { color: var(--mu); }
         .comment-item { display: flex; gap: 16px; margin-bottom: 20px; }
         .comment-author {
             font-weight: 600;
@@ -375,14 +362,33 @@
             </a>
 
             <section class="comments-section">
-                <div class="comments-header"><span>5 Comentários</span></div>
-                
-                <div class="add-comment">
-                    <div class="user-avatar" aria-hidden="true"></div>
-                    <input type="text" class="comment-input" placeholder="Adicione um comentário..." readonly aria-label="Adicionar comentário">
+                <div class="comments-header"><span>7 Comentários</span></div>
+
+                <!-- Comentário 1 (Mulher 70+ sobre a oferta) -->
+                <div class="comment-item">
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
+                    </div>
+                    <div>
+                        <div class="comment-author">Conceição Silva, 72 anos <span>Há 1 dia</span></div>
+                        <div class="comment-text">Aos 72 anos achei que já não havia nada a fazer sem ser plásticas caras. Por este preço simbólico e com a garantia de 7 dias decidi arriscar e não me arrependo nada! Estou a adorar ver a pele a esticar.</div>
+                        <div class="comment-toolbar"><button type="button">👍 Gostei</button><button type="button">Responder</button></div>
+                    </div>
                 </div>
 
-                <!-- Comentário 1 -->
+                <!-- Comentário 2 (Mulher 70+ sobre o valor/preço) -->
+                <div class="comment-item">
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
+                    </div>
+                    <div>
+                        <div class="comment-author">Maria do Carmo, 68 anos <span>Há 2 dias</span></div>
+                        <div class="comment-text">Por menos de 19 euros pensei que seria mais uma brincadeira na internet, mas vale dez vezes mais do que custa. O acesso foi imediato e o método é super fácil de seguir em casa.</div>
+                        <div class="comment-toolbar"><button type="button">👍 Gostei</button><button type="button">Responder</button></div>
+                    </div>
+                </div>
+
+                <!-- Comentário 3 -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
@@ -394,7 +400,7 @@
                     </div>
                 </div>
 
-                <!-- Comentário 2 -->
+                <!-- Comentário 4 -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
@@ -406,7 +412,7 @@
                     </div>
                 </div>
 
-                <!-- Comentário 3 -->
+                <!-- Comentário 5 -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
@@ -418,19 +424,19 @@
                     </div>
                 </div>
 
-                <!-- Comentário 4 -->
+                <!-- Comentário 6 -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
                     </div>
                     <div>
                         <div class="comment-author">Carolina Almeida <span>Há 5 dias</span></div>
-                        <div class="comment-text">Notei imerecida diferença logo na primeira semana. Aqueles 2 minutos diários fazem mesmo toda a diferença na expressão do rosto. Muito obrigada!</div>
+                        <div class="comment-text">Notei imensa diferença logo na primeira semana. Aqueles 2 minutos diários fazem mesmo toda a diferença na expressão do rosto. Muito obrigada!</div>
                         <div class="comment-toolbar"><button type="button">👍 Gostei</button><button type="button">Responder</button></div>
                     </div>
                 </div>
 
-                <!-- Comentário 5 -->
+                <!-- Comentário 7 -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
