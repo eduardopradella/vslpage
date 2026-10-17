@@ -12,6 +12,7 @@
             --tx: #f1f1f1;
             --mu: #aaa;
             --hl: #ff0000;
+            --hl-bg: #ffd60a;
             --cta: #16a34a;
             --cta2: #15803d;
             --border: #3f3f3f;
@@ -81,7 +82,6 @@
         }
         .content-left { width: 100%; }
         
-        /* Estilos da Headline acima do vídeo */
         .headline-wrapper {
             margin-bottom: 16px;
             text-align: left;
@@ -99,7 +99,15 @@
             color: var(--mu);
             line-height: 1.4;
         }
-        .highlight { color: var(--hl); }
+        
+        /* Estilo de destaque com texto vermelho e fundo amarelo */
+        .highlight {
+            color: var(--hl);
+            background-color: var(--hl-bg);
+            padding: 0 4px;
+            border-radius: 3px;
+            font-weight: 800;
+        }
 
         .channel-row {
             display: flex;
@@ -356,13 +364,13 @@
     <div class="main-container">
         <main class="content-left">
             
-            <!-- Headline e Subheadline movidas para cima do vídeo -->
+            <!-- Headline e Subheadline otimizadas com quebra de crença e fundo amarelo nos destaques -->
             <div class="headline-wrapper">
                 <h1 class="video-title">
-                    Descubra a sequência de <span class="highlight">REJUVENESCIMENTO FACIAL</span> que ajuda a recuperar uma aparência <span class="highlight">até 10 anos mais jovem!</span>
+                    Recupere a firmeza do seu rosto e pareça até 10 anos mais jovem com <span class="highlight">apenas 3 minutos por dia</span>.
                 </h1>
                 <p class="video-subtitle">
-                    Mais de 50 mil mulheres já usaram esta técnica natural para se livrar do bigode chinês sem botox e sem sair de casa.
+                    Mais de 50 mil mulheres já usaram esta técnica natural, <span class="highlight">sem botox e sem procedimentos estéticos caros</span>, para eliminar o bigode chinês sem sair de casa.
                 </p>
             </div>
 
@@ -372,7 +380,10 @@
 
             <div class="channel-row">
                 <div class="channel-info">
-                    <div class="channel-avatar" aria-hidden="true"></div>
+                    <div class="channel-avatar" aria-hidden="true">
+                        <!-- Foto da Ana Silva integrada -->
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=faces" alt="Ana Silva">
+                    </div>
                     <div>
                         <div class="channel-name">ANA SILVA</div>
                         <div class="channel-subs">Canal de apresentação</div>
@@ -391,17 +402,17 @@
                 <span class="btn">ACESSAR AGORA POR APENAS €18,33<small>Garantia de 7 dias</small></span>
             </a>
 
+            <!-- Comentários aprimorados para quebrar objeções e dores do público (sem idades) -->
             <section class="comments-section">
                 <div class="comments-header"><span>7 Comentários</span></div>
 
-                <!-- Comentários -->
                 <div class="comment-item">
                     <div class="user-avatar">
                         <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
                     </div>
                     <div>
-                        <div class="comment-author">Conceição Silva, 72 anos <span>Há 1 dia</span></div>
-                        <div class="comment-text">Aos 72 anos achei que já não havia nada a fazer sem ser plásticas caras. Por este preço simbólico e com a garantia de 7 dias decidi arriscar e não me arrependo nada! Estou a adorar ver a pele a esticar.</div>
+                        <div class="comment-author">Conceição Silva <span>Há 1 dia</span></div>
+                        <div class="comment-text">Achei que a minha pele já não tinha solução sem recorrer a plásticas caras ou clínicas. Por este preço simbólico decidi arriscar e foi a melhor escolha! Em poucos minutos por dia em casa já sinto o rosto muito mais firme.</div>
                         <div class="comment-toolbar"><button type="button">👍 Gostei</button><button type="button">Responder</button></div>
                     </div>
                 </div>
@@ -411,8 +422,8 @@
                         <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&h=100&fit=crop&crop=faces" alt="" loading="lazy">
                     </div>
                     <div>
-                        <div class="comment-author">Maria do Carmo, 68 anos <span>Há 2 dias</span></div>
-                        <div class="comment-text">Por menos de 19 euros pensei que seria mais uma brincadeira na internet, mas vale dez vezes mais do que custa. O acesso foi imediato e o método é super fácil de seguir em casa.</div>
+                        <div class="comment-author">Maria do Carmo <span>Há 2 dias</span></div>
+                        <div class="comment-text">No início pensei que seria complicado ou que precisaria de equipamentos caros. Nada disso! O método é super simples, prático e encaixa perfeitamente na rotina. Vale dez vezes mais do que custa.</div>
                         <div class="comment-toolbar"><button type="button">👍 Gostei</button><button type="button">Responder</button></div>
                     </div>
                 </div>
@@ -423,7 +434,7 @@
                     </div>
                     <div>
                         <div class="comment-author">Beatriz Santos <span>Há 2 dias</span></div>
-                        <div class="comment-text">Adorei mesmo a explicação! Comecei a fazer os exercícios há poucos dias e já noto a pele muito mais firme ao pé da boca. Valeu cada cêntimo!</div>
+                        <div class="comment-text">Eu não tinha tempo para rotinas longas, mas esses 2 ou 3 minutos diários fazem toda a diferença. O contorno do rosto voltou a ter definição e o bigode chinês suavizou imenso!</div>
                         <div class="comment-toolbar"><button type="button">👍 Gostei</button><button type="button">Responder</button></div>
                     </div>
                 </div>
@@ -434,7 +445,7 @@
                     </div>
                     <div>
                         <div class="comment-author">Matilde Ferreira <span>Há 3 dias</span></div>
-                        <div class="comment-text">Confesso que estava um bocado cética no início, mas os resultados superaram as expectativas. O vinco está muito mais suave. Recomendo vivamente a todas!</div>
+                        <div class="comment-text">Estava super cética porque já tinha tentado de tudo na internet sem resultado. Mas a sequência de movimentos é guiada direitinho e o resultado aparece de verdade. Recomendo a todas!</div>
                         <div class="comment-toolbar"><button type="button">👍 Gostei</button><button type="button">Responder</button></div>
                     </div>
                 </div>
@@ -445,7 +456,7 @@
                     </div>
                     <div>
                         <div class="comment-author">Inês Rodrigues <span>Há 4 dias</span></div>
-                        <div class="comment-text">Prático, rápido e o melhor de tudo é que fazemos em casa sem gastar uma fortuna em clínicas. Excelente método, parabéns à criadora!</div>
+                        <div class="comment-text">O melhor de tudo é poder fazer o cuidado em casa com total segurança. Adeus àquela aparência de rosto cansado que tanto me incomodava no espelho.</div>
                         <div class="comment-toolbar"><button type="button">👍 Gostei</button><button type="button">Responder</button></div>
                     </div>
                 </div>
@@ -456,7 +467,7 @@
                     </div>
                     <div>
                         <div class="comment-author">Carolina Almeida <span>Há 5 dias</span></div>
-                        <div class="comment-text">Notei imensa diferença logo na primeira semana. Aqueles 2 minutos diários fazem mesmo toda a diferença na expressão do rosto. Muito obrigada!</div>
+                        <div class="comment-text">Sentia que o meu rosto estava a envelhecer mais rápido do que eu me sentia por dentro. Esta técnica devolveu-me a autoestima e a firmeza sem precisar de agulhas.</div>
                         <div class="comment-toolbar"><button type="button">👍 Gostei</button><button type="button">Responder</button></div>
                     </div>
                 </div>
@@ -467,7 +478,7 @@
                     </div>
                     <div>
                         <div class="comment-author">Mariana Costa <span>Há 6 dias</span></div>
-                        <div class="comment-text">Finalmente algo simples que resulta de verdade. O meu marido até já perguntou o que é que eu estou a fazer diferente no rosto ahah! Recomendo a 100%.</div>
+                        <div class="comment-text">A garantia de 7 dias tirou qualquer dúvida que eu tinha na altura da compra. O acesso foi imediato e o resultado superou todas as expectativas.</div>
                         <div class="comment-toolbar"><button type="button">👍 Gostei</button><button type="button">Responder</button></div>
                     </div>
                 </div>
