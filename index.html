@@ -12,7 +12,6 @@
             --tx: #f1f1f1;
             --mu: #aaa;
             --hl: #ff0000;
-            --hl-bg: #ffd60a;
             --cta: #16a34a;
             --cta2: #15803d;
             --border: #3f3f3f;
@@ -81,7 +80,6 @@
             padding: 24px;
         }
         .content-left { width: 100%; }
-        
         .headline-wrapper {
             margin-bottom: 16px;
             text-align: left;
@@ -99,16 +97,10 @@
             color: var(--mu);
             line-height: 1.4;
         }
-        
-        /* Estilo de destaque com texto vermelho e fundo amarelo */
         .highlight {
             color: var(--hl);
-            background-color: var(--hl-bg);
-            padding: 0 4px;
-            border-radius: 3px;
             font-weight: 800;
         }
-
         .channel-row {
             display: flex;
             align-items: center;
@@ -262,6 +254,9 @@
         }
     </style>
     <script>
+        /* Script de Teste A/B 50/50: 
+           Se o usuário abrir pelo GitHub Pages e cair na Variante B, 
+           ele é redirecionado automaticamente mantendo todos os parâmetros de UTM/Pixel para a Vercel. */
         (function() {
             let variant = localStorage.getItem("ab_test_variant");
             if (!variant) {
@@ -269,6 +264,12 @@
                 localStorage.setItem("ab_test_variant", variant);
             }
             window.AB_VARIANT = variant;
+
+            // Se for a Variante B e o usuário estiver no GitHub Pages, redireciona para a Vercel
+            if (variant === "B" && window.location.hostname.includes("github.io")) {
+                const targetUrl = "https://bigodechines.vercel.app/" + window.location.search;
+                window.location.replace(targetUrl);
+            }
         })();
 
         const CFG = {
@@ -364,24 +365,21 @@
     <div class="main-container">
         <main class="content-left">
             
-            <!-- Headline e Subheadline otimizadas com quebra de crença e fundo amarelo nos destaques -->
             <div class="headline-wrapper">
                 <h1 class="video-title">
                     Recupere a firmeza do seu rosto e pareça até 10 anos mais jovem com <span class="highlight">apenas 3 minutos por dia</span>.
                 </h1>
                 <p class="video-subtitle">
-                    Mais de 50 mil mulheres já usaram esta técnica natural, <span class="highlight">sem botox e sem procedimentos estéticos caros</span>, para eliminar o bigode chinês sem sair de casa.
+                    Mais de 50 mil mulheres já usaram esta técnica natural, sem botox e sem procedimentos estéticos caros, para eliminar o bigode chinês sem sair de casa.
                 </p>
             </div>
 
-            <!-- Player do Vturb -->
             <vturb-smartplayer id="vid-6ad3cf7b71ed47eeac0a9c96" style="display: block; margin: 0 auto; width: 100%; max-width: 100%;"></vturb-smartplayer>
             <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/3a348d04-dc1a-4e87-9d0f-ddc1f0ffd8b7/players/6ad3cf7b71ed47eeac0a9c96/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
 
             <div class="channel-row">
                 <div class="channel-info">
                     <div class="channel-avatar" aria-hidden="true">
-                        <!-- Foto da Ana Silva integrada -->
                         <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=faces" alt="Ana Silva">
                     </div>
                     <div>
@@ -402,7 +400,6 @@
                 <span class="btn">ACESSAR AGORA POR APENAS €18,33<small>Garantia de 7 dias</small></span>
             </a>
 
-            <!-- Comentários aprimorados para quebrar objeções e dores do público (sem idades) -->
             <section class="comments-section">
                 <div class="comments-header"><span>7 Comentários</span></div>
 
